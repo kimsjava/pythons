@@ -11,10 +11,19 @@
     - Python 및 Django 설치
     - 가상환경 설정
     - 프로젝트 및 앱 생성
+        - 서버실행(console)
+            > django_app git:(dev) python3 manage.py
     - 기본 설정 파일 수정
 
 2. **View, Template**
     - View 함수 및 클래스형 View 작성
+        - 서버실행 후 request요청(파라미터)
+            ```
+            http://127.0.0.1:8000/hello/123/ok/
+            
+            결과: 
+            you id: "123", your nickname: "ok"
+            ```
     - Template 시스템 이해 및 활용
     - URL 매핑과 View 연결
     - 템플릿 상속 및 정적 파일 사용
