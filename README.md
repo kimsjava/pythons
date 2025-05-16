@@ -16,18 +16,22 @@
     - 기본 설정 파일 수정
 
 2. **View, Template**
-    - View 함수 및 클래스형 View 작성
-        - 서버실행 후 request요청(파라미터)
-            ```
-            http://127.0.0.1:8000/hello/123/ok/
-            
-            결과: 
-            you id: "123", your nickname: "ok"
-            ```
-    - Template 시스템 이해 및 활용
 
-    - URL 매핑과 View 연결
-    - 템플릿 상속 및 정적 파일 사용
+    - **View 작성**
+        - 함수형 View와 클래스형 View를 작성하여 요청을 처리합니다.
+        - 예시: `hello/views.py`에서 `index`, `next` 함수 정의
+
+    - **Template 작성 및 활용**
+        - 템플릿 파일은 `hello/templates/hello/index.html`에 위치합니다.
+        - 템플릿에서 변수(`{{ title }}`, `{{ msg }}` 등)와 템플릿 태그(`{% url goto %}` 등)를 활용합니다.
+
+    - **URL 매핑**
+        - `hello/urls.py`에서 URL 패턴을 View와 연결합니다.
+        - 예시: `path('', views.index, name='index')`, `path('next', views.next, name='next')`
+
+    - **템플릿 상속 및 정적 파일 사용**
+        - 템플릿 상속 구조를 활용하여 공통 레이아웃을 관리할 수 있습니다.
+        - 정적 파일(css 등)은 `hello/static/hello/css/style.css`에 위치하며, 템플릿에서 `{% static %}` 태그로 불러옵니다.
 
 3. **(추가 예정)**
 
