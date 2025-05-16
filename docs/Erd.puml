@@ -1,0 +1,107 @@
+@startuml Erd
+
+entity django_migrations {
+    * id : integer <<PK>>
+    --
+    app : varchar(255)
+    name : varchar(255)
+    applied : datetime
+}
+
+entity auth_group {
+    * id : integer <<PK>>
+    --
+    name : varchar(150) <<UNIQUE>>
+}
+
+entity auth_permission {
+    * id : integer <<PK>>
+    --
+    content_type_id : integer <<FK>>
+    codename : varchar(100)
+    name : varchar(255)
+}
+
+entity django_content_type {
+    * id : integer <<PK>>
+    --
+    app_label : varchar(100)
+    model : varchar(100)
+}
+
+entity auth_group_permissions {
+    * id : integer <<PK>>
+    --
+    group_id : integer <<FK>>
+    permission_id : integer <<FK>>
+}
+
+entity auth_user {
+    * id : integer <<PK>>
+    --
+    password : varchar(128)
+    last_login : datetime
+    is_superuser : bool
+    username : varchar(150) <<UNIQUE>>
+    last_name : varchar(150)
+    email : varchar(254)
+    is_staff : bool
+    is_active : bool
+    date_joined : datetime
+    first_name : varchar(150)
+}
+
+entity auth_user_groups {
+    * id : integer <<PK>>
+    --
+    user_id : integer <<FK>>
+    group_id : integer <<FK>>
+}
+
+entity auth_user_user_permissions {
+    * id : integer <<PK>>
+    --
+    user_id : integer <<FK>>
+    permission_id : integer <<FK>>
+}
+
+entity django_admin_log {
+    * id : integer <<PK>>
+    --
+    object_id : text
+    object_repr : varchar(200)
+    action_flag : smallint
+    change_message : text
+    content_type_id : integer <<FK>>
+    user_id : integer <<FK>>
+    action_time : datetime
+}
+
+entity django_session {
+    * session_key : varchar(40) <<PK>>
+    --
+    session_data : text
+    expire_date : datetime
+}
+
+entity hello_friend {
+    * id : integer <<PK>>
+    --
+    name : varchar(100)
+    mail : varchar(200)
+    age : integer
+    birthday : date
+}
+
+' 관계(외래키)
+auth_permission::content_type_id -- django_content_type::id
+auth_group_permissions::group_id -- auth_group::id
+auth_group_permissions::permission_id -- auth_permission::id
+auth_user_groups::user_id -- auth_user::id
+auth_user_groups::group_id -- auth_group::id
+auth_user_user_permissions::user_id -- auth_user::id
+auth_user_user_permissions::permission_id -- auth_permission::id
+django_admin_log::content_type_id -- django_content_type::id
+django_admin_log::user_id -- auth_user::id
+
+@enduml
