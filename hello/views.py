@@ -10,3 +10,11 @@ def index(request):
         'goto': 'next',
     }
     return render(request, 'hello/index.html', params)
+
+def next(request):
+    params = {
+        'title': 'Hello/Next',
+        'msg': 'これは、もう一つのsample',
+        'goto': 'index',
+    }
+    return render(request, 'hello/index.html', params)
