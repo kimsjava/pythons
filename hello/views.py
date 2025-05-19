@@ -1,21 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from hello.form import HelloForm
 # Create your views here.
 
 
 def index(request):
     params = {
-        'title': 'Hello/Index',
-        'msg': 'これは、sample',
-        'goto': 'next',
+        'title': 'Hello',
+        'msg': 'your date',
+        'form': HelloForm(),
     }
+    if (request.method == 'POST'):
+        params['message'] = f"名前:{request.POST['name']}\nメール:{request.POST['mail']}\n年齢:{request.POST['age']}"
+        params['form'] = HelloForm(request.POST)
+        
     return render(request, 'hello/index.html', params)
-
-def form(request):
-    msg = request.POST['msg']
-    params = {
-        'title': 'Hello/Form',
-        'msg': f'konbanwa {msg} san',
-    }
-    return render(request, 'hello/index.html', params)
-

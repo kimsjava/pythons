@@ -1,0 +1,12 @@
+@startuml helloIndex
+skinparam handwritten true
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+}
+
+rectangle "Hello/Index" as header
+rectangle "메시지 표시 영역: {{msg}}" as msg
+rectangle "폼 입력 영역\n---------------------\n이름(name):   [            ]\n이메일(mail): [            ]\n나이(age):    [            ]\n\n      [ click ]" as form
+
+@enduml
