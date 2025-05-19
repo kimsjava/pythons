@@ -11,10 +11,11 @@ def index(request):
     }
     return render(request, 'hello/index.html', params)
 
-def next(request):
+def form(request):
+    msg = request.POST['msg']
     params = {
-        'title': 'Hello/Next',
-        'msg': 'これは、もう一つのsample',
-        'goto': 'index',
+        'title': 'Hello/Form',
+        'msg': f'konbanwa {msg} san',
     }
     return render(request, 'hello/index.html', params)
+
