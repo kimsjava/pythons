@@ -22,9 +22,23 @@ class HelloView(TemplateView):
         return render(request, 'hello/index.html', self.params)
     
     def post(self, request):
-        self.params['result'] = f'you selected:{request.POST.getlist("choice")}'
-            
+        selected_choices = request.POST.getlist("choice")  # 리스트로 가져오기
+        selected_labels = []
+
+        # 값만 출력할 경우
+        for val in selected_choices:
+            selected_labels.append(val)  # 'one', 'two' 등
+
+        # 폼 재생성
         self.params['form'] = HelloForm(request.POST)
-        self.params['message'] = f'Hello {request.POST['name']}, your age is {request.POST['age']} and your mail {request.POST['mail']}'
+
+        # 텍스트로 출력
+        self.params['result'] = "You selected: " + ", ".join(selected_labels)
+
+        # 기타 필드 값 처리
+        name = request.POST.get("name", "")
+        age = request.POST.get("age", "")
+        mail = request.POST.get("mail", "")
+        self.params['message'] = f'Hello {name}, your age is {age} and your mail {mail}'
 
         return render(request, 'hello/index.html', self.params)

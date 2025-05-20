@@ -1,0 +1,29 @@
+@startuml index134MultiRadio
+
+skinparam backgroundColor #ffffff
+skinparam handwritten false
+
+title 🗳️ Django Form - index.html (Rendered View)
+
+rectangle "Form: HelloView + HelloForm" {
+
+  component "<h1>Hello</h1>" as Title
+  component "<p>You selected: two, three, four</p>" as Result
+
+  folder "Form Fields" {
+    [URL:\nhttps://aaa.com]
+    [Mail:\nasdf@asdf.com]
+    [Age:\n11]
+
+    [Date:\n2025.12.30]
+    [Time:\n오후 12:59]
+    [Datetime:\n2024.12.31 오후 12:59]
+
+    [Check:\nYes (NullBooleanField)]
+
+    [Choice:\nitem 2, item 3, item 4 (Multiple Select)]
+  }
+
+  [Submit Button: click]
+}
+@enduml
