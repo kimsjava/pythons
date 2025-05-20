@@ -1,0 +1,56 @@
+@startuml
+skinparam style strict
+skinparam componentStyle rectangle
+skinparam rectangle {
+  BackgroundColor #ffffff
+  BorderColor #777
+  FontSize 12
+}
+
+rectangle "<body class='container'>" {
+
+  rectangle "<h1 class='display-4 text-primary'>Hello</h1>" 
+
+  rectangle "<p class='h5'>{{ result }}</p>" 
+
+  rectangle "<form method='post'>" {
+
+    rectangle "CSRF Token"
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>url</label>\n<input type='url' class='form-control' name='name'>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>mail</label>\n<input type='email' class='form-control' name='mail'>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>age</label>\n<input type='number' class='form-control' name='age' min='0' max='120'>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>date</label>\n<input type='date' class='form-control' name='d1'>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>time</label>\n<input type='time' class='form-control' name='t1'>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>datetime</label>\n<input type='datetime-local' class='form-control' name='dt1'>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>Check</label>\n<select name='check'>\n<option>예</option><option>아니오</option><option>모름</option>\n</select>"
+    }
+
+    rectangle "<div class='form-group'>" {
+      rectangle "<label>Choice</label>\n<select name='choice'>\n<option>item 1</option>\n<option>item 2</option>\n<option>item 3</option>\n</select>"
+    }
+
+    rectangle "<input type='submit' class='btn btn-primary' value='click'>"
+  }
+
+}
+@enduml

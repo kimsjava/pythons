@@ -1,0 +1,42 @@
+@startuml
+skinparam style strict
+skinparam componentStyle rectangle
+
+rectangle "<form>" {
+  rectangle "<table>" {
+    rectangle "<tr>" {
+      rectangle "<th>url</th>"
+      rectangle "<td><input type='url'></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>mail</th>"
+      rectangle "<td><input type='email'></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>age</th>"
+      rectangle "<td><input type='number'></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>date</th>"
+      rectangle "<td><input type='date'></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>time</th>"
+      rectangle "<td><input type='time'></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>datetime</th>"
+      rectangle "<td><input type='datetime-local'></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>Check</th>"
+      rectangle "<td><select>...</select></td>"
+    }
+    rectangle "<tr>" {
+      rectangle "<th>Choice</th>"
+      rectangle "<td><select>...</select></td>"
+    }
+  }
+  rectangle "<input type='submit'>"
+}
+@enduml
