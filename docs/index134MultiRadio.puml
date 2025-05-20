@@ -1,0 +1,43 @@
+@startuml index134MultiRadio
+skinparam handwritten false
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+
+title Django HelloForm - Rendered index.html
+
+rectangle "index.html" {
+
+    component "Title: Hello" as T1
+    component "Message Placeholder" as MSG
+    component "Result: you selected [...]" as RESULT
+
+    folder "Form: HelloForm" {
+
+        frame "Text Fields" {
+            [URL: name (CharField - URLInput)]
+            [Email: mail (EmailInput)]
+            [Age: age (IntegerField 0~120)]
+        }
+
+        frame "Date & Time" {
+            [Date: d1 (DateInput)]
+            [Time: t1 (TimeInput)]
+            [Datetime: dt1 (Datetime-local)]
+        }
+
+        frame "Choice Field" {
+            [Multiple Choice: choice (SelectMultiple)]
+            note right
+              Items: item 1 ~ item 5
+            end note
+        }
+
+        frame "Boolean" {
+            [Check: check (NullBooleanField)]
+        }
+
+        [Submit Button]
+    }
+}
+
+@enduml

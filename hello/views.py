@@ -22,7 +22,7 @@ class HelloView(TemplateView):
         return render(request, 'hello/index.html', self.params)
     
     def post(self, request):
-        self.params['result'] = f'you selected:{request.POST.get('choice')}'
+        self.params['result'] = f'you selected:{request.POST.getlist("choice")}'
             
         self.params['form'] = HelloForm(request.POST)
         self.params['message'] = f'Hello {request.POST['name']}, your age is {request.POST['age']} and your mail {request.POST['mail']}'

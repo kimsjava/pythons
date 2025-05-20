@@ -21,5 +21,6 @@ class HelloForm(forms.Form):
     #choice = forms.ChoiceField(label='Choice', choices=data)
     #choice = forms.ChoiceField(label='radio', choices=data, widget=forms.RadioSelect())
     
-    choice = forms.ChoiceField(label='radio', choices=data, widget=forms.Select(attrs={'size':5, 'class': 'form-control'}))
+    #choice = forms.ChoiceField(label='radio', choices=data, widget=forms.Select(attrs={'size':5, 'class': 'form-control'}))
     
+    choice = forms.MultipleChoiceField(label='radio', choices=data, widget=forms.SelectMultiple(attrs={'size':6, 'class': 'form-select'}))
