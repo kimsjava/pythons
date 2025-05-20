@@ -1,0 +1,22 @@
+@startuml index121
+skinparam handwritten true
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+}
+
+rectangle "<h1>{{title}}</h1>" as header
+rectangle "<p>{{msg}}</p>" as msg
+
+rectangle "name: [                ]\nmail: [                ]\nage:  [                ]\n\n[ click ]" as form
+
+note right of form
+name: 필수, 문자열, form-control
+mail: 필수, 이메일 형식, form-control
+age: 필수, 0~120 정수, form-control
+end note
+
+header -down-> msg
+msg -down-> form
+
+@enduml

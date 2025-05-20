@@ -12,7 +12,7 @@
     <p class="h6 my-3">{{msg}}</p>
     <form action="{% url 'index' %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_table }}
         <input type="submit" value="click" class="btn btn-primary">
     </form>
 
