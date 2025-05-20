@@ -1,0 +1,20 @@
+@startuml helloFormCheck
+skinparam handwritten true
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+}
+
+rectangle "check 필드" as checkField
+
+note right of checkField
+choice(Data Json)는 아래와 같이 렌더링됩니다:
+
+<select name="check">
+  <option value="one">item 1</option>
+  <option value="two">item 2</option>
+  <option value="three">item 3</option>
+</select>
+end note
+
+@enduml

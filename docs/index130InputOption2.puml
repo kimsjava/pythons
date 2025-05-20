@@ -1,0 +1,26 @@
+@startuml
+actor User
+participant "Browser" as Browser
+participant "Django View\n(HelloView)" as View
+participant "Django Form\n(HelloForm)" as Form
+participant "Template\n(index.html)" as Template
+
+== GET 요청 ==
+User -> Browser : 접속 (GET /)
+Browser -> View : HelloView.get(request)
+View -> Form : HelloForm() 생성
+View -> Template : render(request, 'index.html', params)
+Template --> Browser : HTML 반환
+Browser -> User : 폼 화면 표시
+
+== POST 요청 ==
+User -> Browser : 폼 입력 후 제출
+Browser -> View : HelloView.post(request)
+View -> Form : HelloForm(request.POST)
+View -> View : request.POST.get('choice')
+View -> View : request.POST['name'], ['age'], ['mail']
+View -> Template : render(request, 'index.html', params)
+Template --> Browser : 결과 포함된 HTML 반환
+Browser -> User : 결과 페이지 표시
+
+@enduml
