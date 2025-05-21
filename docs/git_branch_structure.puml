@@ -1,0 +1,36 @@
+@startuml git_branches
+!theme plain
+skinparam backgroundColor transparent
+skinparam ArrowColor black
+skinparam NodeColor white
+skinparam NodeBorderColor black
+
+' 노드 정의
+node "main\nfe5937f\n(순수한 초기 상태)" as main #lightgrey
+node "dev\n16b0a3e\n(1-2장 완료)" as dev #lightgreen
+node "ch1_2\nb50ba92\n(dev와 동일)" as ch1_2 #lightblue
+node "ch3\n69493ec\n(3장 작업 시작)" as ch3 #yellow
+node "ch4\na7cfe8d\n(4장 예정)" as ch4 #white
+node "ch5\n4bfe8cb\n(5장 예정)" as ch5 #white
+
+' 브랜치 관계
+main --> dev
+dev --> ch1_2
+ch1_2 --> ch3
+ch3 --> ch4
+ch4 --> ch5
+
+note right of main : "origin/main과 동기화"
+note right of dev : "origin/dev와 동기화"
+note right of ch3 : "현재 작업 브랜치"
+
+legend right
+  |= 색상 |= 상태 |
+  | <#lightgrey> | 초기 상태 |
+  | <#lightgreen> | 작업 완료 |
+  | <#lightblue> | dev 복제 |
+  | <#yellow> | 현재 작업중 |
+  | <#white> | 예정 |
+endlegend
+
+@enduml 
