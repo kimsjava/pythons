@@ -139,11 +139,16 @@ django_app/
         ＞　hello git:(dev) ✗ git ls-tree --name-only origin/dev
     ```
 
-**💡 PlantUML Tip:** *.puml파일의 내용을 아래의 PlantUml viewer site에서 확인 가능
+**💡 PlantUML Tip:** 
 
+1. **온라인 뷰어로 보기**
     ```
-        ＞　https://plantumlviewer.web.app/
+    1. GitHub에서 *.puml 파일 내용을 복사
+    2. https://plantumlviewer.web.app 접속
+    3. 복사한 내용을 붙여넣기하여 다이어그램 확인
     ```
+
+2. **로컬에서 설치 및 실행**
 
 **💡 PlantUML 설치 및 사용 방법 TIP:**
 
