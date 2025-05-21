@@ -23,3 +23,12 @@ class HelloView(TemplateView):
         self.params['form'] = SessionForm(request.POST)
         
         return render(request, 'hello/index.html', self.params)
+    
+    
+    def sample_middleware(self, get_response):
+        
+        def middleware(request):
+            print(f'request: {request}')
+            return get_response(request)
+        
+        return middleware

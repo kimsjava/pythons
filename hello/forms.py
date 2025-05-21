@@ -61,3 +61,5 @@ class SessionForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={"class": "form-control"}),
     )
+
+
