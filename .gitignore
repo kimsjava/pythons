@@ -54,3 +54,7 @@ static/
 
 # 기타
 *.log
+
+# PlantUML
+plantuml.jar
+*.png

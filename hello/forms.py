@@ -53,3 +53,11 @@ class HelloForm(forms.Form):
         choices=data,
         widget=forms.SelectMultiple(attrs={"size": 6, "class": "form-select"}),
     )
+
+
+class SessionForm(forms.Form):
+    session = forms.CharField(
+        label="session",
+        required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )

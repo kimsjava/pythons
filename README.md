@@ -145,5 +145,49 @@ django_app/
         ＞　https://plantumlviewer.web.app/
     ```
 
+**💡 PlantUML 설치 및 사용 방법 TIP:**
+
+1. **Graphviz 설치 확인**
+    ```bash
+    # Graphviz 버전 확인
+    dot -V
+    
+    # 설치가 안 되어 있다면 설치 (macOS)
+    brew install graphviz
+    ```
+
+2. **PlantUML JAR 파일 다운로드**
+    ```bash
+    # 최신 버전 다운로드 (1.2024.3 버전 기준)
+    # 프로젝트 루트 디렉토리에서 실행
+    curl -o plantuml.jar -L https://github.com/plantuml/plantuml/releases/download/v1.2024.3/plantuml-1.2024.3.jar
+
+    # 또는 직접 다운로드 후 프로젝트 루트 디렉토리에 복사
+    # https://github.com/plantuml/plantuml/releases/latest
+    ```
+
+3. **다이어그램 생성 방법**
+    ```bash
+    # PlantUML 파일로부터 이미지 생성
+    java -jar plantuml.jar your-diagram.puml
+    
+    # 예시: test.puml 파일로부터 test.png 생성
+    java -jar plantuml.jar test.puml
+    ```
+
+4. **다이어그램 작성 예시**
+    ```plantuml
+    @startuml
+    title 세션 관리 플로우
+    actor User
+    participant "Browser" as B
+    participant "Django View" as V
+    
+    User -> B: 요청
+    B -> V: 처리
+    V -> B: 응답
+    B -> User: 결과
+    @enduml
+    ```
 
 ---

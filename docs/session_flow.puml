@@ -1,0 +1,35 @@
+@startuml Session Flow
+
+actor User
+participant "Browser" as browser
+participant "Django View\n(HelloView)" as view
+participant "Django Form\n(SessionForm)" as form
+database "Session Storage" as session
+
+== 초기 페이지 로드 (GET 요청) ==
+User -> browser: 페이지 접근
+browser -> view: GET 요청
+view -> session: session.get('last_msg')
+session --> view: 저장된 메시지 또는 'no message'
+view -> form: SessionForm() 생성
+form --> view: 빈 폼 반환
+view -> browser: render(index.html)
+browser -> User: 폼 표시
+
+== 세션 데이터 저장 (POST 요청) ==
+User -> browser: 폼 데이터 입력
+User -> browser: 제출 버튼 클릭
+browser -> view: POST 요청
+view -> form: SessionForm(request.POST)
+form --> view: 유효성 검증된 폼
+view -> session: session['last_msg'] = 입력값
+view -> browser: render(index.html)
+browser -> User: 결과 표시
+
+== 세션 데이터 유지 ==
+note right of session
+  세션 데이터는 브라우저를 
+  닫았다 열어도 유지됨
+end note
+
+@enduml 
