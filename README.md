@@ -5,6 +5,63 @@
 
 ---
 
+## 프로젝트 설정 및 실행 방법
+
+1. **프로젝트 클론**
+    ```bash
+    git clone [repository_url]
+    cd django_app
+    ```
+
+2. **환경 설정**
+    ```bash
+    # 가상환경 생성 및 활성화 (선택사항)
+    python -m venv venv
+    source venv/bin/activate  # macOS/Linux
+    # venv\Scripts\activate  # Windows
+
+    # 의존성 설치
+    pip install -r requirements.txt
+    ```
+
+3. **로컬 설정**
+    ```bash
+    # 로컬 설정 파일 생성
+    cp django_app/settings/local.py.example django_app/settings/local.py
+    
+    # local.py 파일에서 필요한 설정 수정
+    # - DEBUG
+    # - SECRET_KEY
+    # - DATABASE
+    # - 기타 로컬 환경 설정
+    ```
+
+4. **서버 실행**
+    ```bash
+    # 기본 포트(8000)로 실행
+    python run_server.py
+    
+    # 또는 직접 포트 지정
+    python manage.py runserver 8080
+    ```
+
+## 프로젝트 구조
+
+```
+django_app/
+├── django_app/
+│   └── settings/
+│       ├── __init__.py    # 설정 로드 로직
+│       ├── base.py        # 기본 설정 (Git에 포함)
+│       ├── local.py       # 로컬 환경 설정 (Git에서 제외)
+│       └── local.py.example  # 로컬 설정 예제
+├── requirements.txt    # 프로젝트 의존성
+├── run_server.py      # 서버 실행 스크립트
+└── manage.py
+```
+
+---
+
 ## 목차
 
 1. **환경설정**
