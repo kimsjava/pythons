@@ -89,6 +89,9 @@ django_app/
     - **템플릿 상속 및 정적 파일 사용**
         - 템플릿 상속 구조를 활용하여 공통 레이아웃을 관리할 수 있습니다.
         - 정적 파일(css 등)은 `hello/static/hello/css/style.css`에 위치하며, 템플릿에서 `{% static %}` 태그로 불러옵니다.
+    - **form filed**
+    
+    - **session, middleware**    
 
 3. **(추가 예정)**
 
