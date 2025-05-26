@@ -1,6 +1,6 @@
-# Python Django 4帖入門 연습 프로젝트
+# Python Django 4 帖入門 연습 프로젝트
 
-이 프로젝트는 **『Python Django 4帖入門』** 책의 내용을 실습하고 연습하기 위해 만들어졌습니다.  
+이 프로젝트는 **『Python Django 4 帖入門』** 책의 내용을 실습하고 연습하기 위해 만들어졌습니다.  
 책의 목차에 따라 각 장별로 실습 예제를 구현하고 있습니다.
 
 ---
@@ -8,42 +8,46 @@
 ## 프로젝트 설정 및 실행 방법
 
 1. **프로젝트 클론**
-    ```bash
-    git clone [repository_url]
-    cd django_app
-    ```
+
+   ```bash
+   git clone [repository_url]
+   cd django_app
+   ```
 
 2. **환경 설정**
-    ```bash
-    # 가상환경 생성 및 활성화 (선택사항)
-    python -m venv venv
-    source venv/bin/activate  # macOS/Linux
-    # venv\Scripts\activate  # Windows
 
-    # 의존성 설치
-    pip install -r requirements.txt
-    ```
+   ```bash
+   # 가상환경 생성 및 활성화 (선택사항)
+   python -m venv venv
+   source venv/bin/activate  # macOS/Linux
+   # venv\Scripts\activate  # Windows
+
+   # 의존성 설치
+   pip install -r requirements.txt
+   ```
 
 3. **로컬 설정**
-    ```bash
-    # 로컬 설정 파일 생성
-    cp django_app/settings/local.py.example django_app/settings/local.py
-    
-    # local.py 파일에서 필요한 설정 수정
-    # - DEBUG
-    # - SECRET_KEY
-    # - DATABASE
-    # - 기타 로컬 환경 설정
-    ```
+
+   ```bash
+   # 로컬 설정 파일 생성
+   cp django_app/settings/local.py.example django_app/settings/local.py
+
+   # local.py 파일에서 필요한 설정 수정
+   # - DEBUG
+   # - SECRET_KEY
+   # - DATABASE
+   # - 기타 로컬 환경 설정
+   ```
 
 4. **서버 실행**
-    ```bash
-    # 기본 포트(8000)로 실행
-    python run_server.py
-    
-    # 또는 직접 포트 지정
-    python manage.py runserver 8080
-    ```
+
+   ```bash
+   # 기본 포트(8000)로 실행
+   python run_server.py
+
+   # 또는 직접 포트 지정
+   python manage.py runserver 8080
+   ```
 
 ## 프로젝트 구조
 
@@ -65,35 +69,52 @@ django_app/
 ## 목차
 
 1. **환경설정**
-    - Python 및 Django 설치
-    - 가상환경 설정
-    - 프로젝트 및 앱 생성
-        - 서버실행(console)
-            > django_app git:(dev) python3 manage.py
-    - 기본 설정 파일 수정
+
+   - Python 및 Django 설치
+   - 가상환경 설정
+   - 프로젝트 및 앱 생성
+     - 서버실행(console)
+       > django_app git:(dev) python3 manage.py
+   - 기본 설정 파일 수정
 
 2. **View, Template**
 
-    - **View 작성**
-        - 함수형 View와 클래스형 View를 작성하여 요청을 처리합니다.
-        - 예시: `hello/views.py`에서 `index`, `next` 함수 정의
+   - **View 작성**
 
-    - **Template 작성 및 활용**
-        - 템플릿 파일은 `hello/templates/hello/index.html`에 위치합니다.
-        - 템플릿에서 변수(`{{ title }}`, `{{ msg }}` 등)와 템플릿 태그(`{% url goto %}` 등)를 활용합니다.
+     - 함수형 View와 클래스형 View를 작성하여 요청을 처리합니다.
+     - 예시: `hello/views.py`에서 `index`, `next` 함수 정의
 
-    - **URL 매핑**
-        - `hello/urls.py`에서 URL 패턴을 View와 연결합니다.
-        - 예시: `path('', views.index, name='index')`, `path('next', views.next, name='next')`
+   - **Template 작성 및 활용**
 
-    - **템플릿 상속 및 정적 파일 사용**
-        - 템플릿 상속 구조를 활용하여 공통 레이아웃을 관리할 수 있습니다.
-        - 정적 파일(css 등)은 `hello/static/hello/css/style.css`에 위치하며, 템플릿에서 `{% static %}` 태그로 불러옵니다.
-    - **form filed**
-    
-    - **session, middleware**    
+     - 템플릿 파일은 `hello/templates/hello/index.html`에 위치합니다.
+     - 템플릿에서 변수(`{{ title }}`, `{{ msg }}` 등)와 템플릿 태그(`{% url goto %}` 등)를 활용합니다.
 
-3. **(추가 예정)**
+   - **URL 매핑**
+
+     - `hello/urls.py`에서 URL 패턴을 View와 연결합니다.
+     - 예시: `path('', views.index, name='index')`, `path('next', views.next, name='next')`
+
+   - **템플릿 상속 및 정적 파일 사용**
+     - 템플릿 상속 구조를 활용하여 공통 레이아웃을 관리할 수 있습니다.
+     - 정적 파일(css 등)은 `hello/static/hello/css/style.css`에 위치하며, 템플릿에서 `{% static %}` 태그로 불러옵니다.
+   - **form filed**
+
+   - **session, middleware**
+
+3. ** Model,Database**
+
+   - **Database Configuration**
+
+     - `django_app/settings/setting.py`에서 데이터베이스 설정을 수정합니다.
+     - `django_app/hello/models.py`에서 모델 설정을 수정합니다.
+     - `> python manage.py makemigrations hello`에서 마이그레이션 파일 작성.
+     - `> python manage.py migrate`마이그레이션 실행. -> migrations/0001_initial.py 생성 됨
+
+   - **管理ツールを使おう**
+
+     - python manage.py createsuperuser
+
+     - 예시: `hello/views.py`에서 `index`, `next` 함수 정의
 
 4. **(추가 예정)**
 
@@ -113,10 +134,11 @@ django_app/
 ## Tip
 
 **💡 vscode Tip:** vscode 탐색기 보기
- `app_name/templates/app_name/` 구조로 만드세요.
-    ```
-        VS Code에서 디렉터리 구조를 **트리(계층 구조)**로 보이게 하려면,
-        기본적으로 탐색기(Explorer) 뷰가 트리 구조로 표시됩니다.
+`app_name/templates/app_name/` 구조로 만드세요.
+
+````
+VS Code에서 디렉터리 구조를 **트리(계층 구조)**로 보이게 하려면,
+기본적으로 탐색기(Explorer) 뷰가 트리 구조로 표시됩니다.
 
         만약 옆으로(플랫하게) 보인다면, 아래 설정을 확인하세요.
 
@@ -142,60 +164,67 @@ django_app/
         ＞　hello git:(dev) ✗ git ls-tree --name-only origin/dev
     ```
 
-**💡 PlantUML Tip:** 
+**💡 PlantUML Tip:**
 
 1. **온라인 뷰어로 보기**
-    ```
-    1. GitHub에서 *.puml 파일 내용을 복사
-    2. https://plantumlviewer.web.app 접속
-    3. 복사한 내용을 붙여넣기하여 다이어그램 확인
-    ```
+
+````
+
+1.  GitHub에서 \*.puml 파일 내용을 복사
+2.  https://plantumlviewer.web.app 접속
+3.  복사한 내용을 붙여넣기하여 다이어그램 확인
+
+````
 
 2. **로컬에서 설치 및 실행**
 
 **💡 PlantUML 설치 및 사용 방법 TIP:**
 
 1. **Graphviz 설치 확인**
-    ```bash
-    # Graphviz 버전 확인
-    dot -V
-    
-    # 설치가 안 되어 있다면 설치 (macOS)
-    brew install graphviz
-    ```
+
+```bash
+# Graphviz 버전 확인
+dot -V
+
+# 설치가 안 되어 있다면 설치 (macOS)
+brew install graphviz
+````
 
 2. **PlantUML JAR 파일 다운로드**
-    ```bash
-    # 최신 버전 다운로드 (1.2024.3 버전 기준)
-    # 프로젝트 루트 디렉토리에서 실행
-    curl -o plantuml.jar -L https://github.com/plantuml/plantuml/releases/download/v1.2024.3/plantuml-1.2024.3.jar
 
-    # 또는 직접 다운로드 후 프로젝트 루트 디렉토리에 복사
-    # https://github.com/plantuml/plantuml/releases/latest
-    ```
+   ```bash
+   # 최신 버전 다운로드 (1.2024.3 버전 기준)
+   # 프로젝트 루트 디렉토리에서 실행
+   curl -o plantuml.jar -L https://github.com/plantuml/plantuml/releases/download/v1.2024.3/plantuml-1.2024.3.jar
+
+   # 또는 직접 다운로드 후 프로젝트 루트 디렉토리에 복사
+   # https://github.com/plantuml/plantuml/releases/latest
+   ```
 
 3. **다이어그램 생성 방법**
-    ```bash
-    # PlantUML 파일로부터 이미지 생성
-    java -jar plantuml.jar your-diagram.puml
-    
-    # 예시: test.puml 파일로부터 test.png 생성
-    java -jar plantuml.jar test.puml
-    ```
+
+   ```bash
+   # PlantUML 파일로부터 이미지 생성
+   java -jar plantuml.jar your-diagram.puml
+
+   # 예시: test.puml 파일로부터 test.png 생성
+   java -jar plantuml.jar test.puml
+   ```
 
 4. **다이어그램 작성 예시**
-    ```plantuml
-    @startuml
-    title 세션 관리 플로우
-    actor User
-    participant "Browser" as B
-    participant "Django View" as V
-    
-    User -> B: 요청
-    B -> V: 처리
-    V -> B: 응답
-    B -> User: 결과
-    @enduml
-    ```
+
+   ```plantuml
+   @startuml
+   title 세션 관리 플로우
+   actor User
+   participant "Browser" as B
+   participant "Django View" as V
+
+   User -> B: 요청
+   B -> V: 처리
+   V -> B: 응답
+   B -> User: 결과
+   @enduml
+   ```
 
 ---
