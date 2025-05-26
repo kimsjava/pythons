@@ -1,34 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render  # render 함수 import 추가
 from django.views.generic import TemplateView
-
+from .models import Friend
 from .forms import SessionForm
 # Create your views here.
-class HelloView(TemplateView):
-    
-    def __init__(self):
-        self.params = {
-            'title': 'Hello',
-            'form': SessionForm(),
-            'result': None,
-        }
 
-    def get(self, request):
-        self.params['result'] = request.session.get('last_msg', 'no message')
-        return render(request, 'hello/index.html', self.params)
+# 함수형 뷰
+def index(request):
+    data = Friend.objects.all()
+    params = {
+        'title': 'Hello',
+        'message': 'all friends',
+        'data': data,
+    }
+    print(f'params: {params}')
+    return render(request, 'hello/index.html', params)
+
+# HelloView 클래스 추가 (urls.py에서 사용한다면)
+class HelloView(TemplateView):
+    template_name = 'hello/index.html'
     
-    def post(self, request):
-        ses = request.POST.get('session', '')
-        self.params['result'] = f'sned: {ses}.'
-        request.session['last_msg'] = ses
-        self.params['form'] = SessionForm(request.POST)
-        
-        return render(request, 'hello/index.html', self.params)
-    
-    
-    def sample_middleware(self, get_response):
-        
-        def middleware(request):
-            print(f'request: {request}')
-            return get_response(request)
-        
-        return middleware
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Hello'
+        context['message'] = 'all friends'
+        context['data'] = Friend.objects.all()
+        return context
