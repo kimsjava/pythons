@@ -228,3 +228,41 @@ brew install graphviz
    ```
 
 ---
+
+3.  **Django 설정 파일에서 DEBUG 모드 활성화**
+
+    1.  설정 파일 구조
+        from .base import \* 코드는 같은 디렉토리에 있는 base.py 파일의 모든 설정을 가져옵니다.
+        그 후 DEBUG = True로 설정하여 기본 설정의 DEBUG 값을 True로 덮어씁니다.
+
+    2.  DEBUG = True의 효과
+        상세한 오류 페이지:
+
+        애플리케이션에서 오류가 발생하면 상세한 디버그 정보가 포함된 오류 페이지가 표시됩니다.
+        예외 추적, 코드 스니펫, 로컬 변수 값 등이 브라우저에 표시됩니다.
+        자동 코드 리로딩:
+
+        개발 서버에서 코드 변경 시 자동으로 서버가 다시 로드됩니다.
+        템플릿 디버깅:
+
+        템플릿 오류 발생 시 상세한 디버그 정보를 제공합니다.
+        정적 파일 자동 제공:
+
+        개발 서버가 정적 파일(CSS, JavaScript, 이미지)을 자동으로 제공합니다.
+        프로덕션 환경에서는 정적 파일을 별도로 서빙해야 합니다.
+
+    3.  실행 방법
+        local.py 설정을 사용하려면 다음과 같이 실행합니다:
+
+            python manage.py runserver --settings=django_app.settings.local
+
+        또는 manage.py 파일에서 기본 설정으로 local.py를 지정할 수 있습니다:
+
+            os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_app.settings.local')`
+
+    4.  프로덕션 환경과의 차이
+        DEBUG = True는 개발 환경에서만 사용해야 합니다.
+        프로덕션 환경에서는 DEBUG = False로 설정하여 보안을 강화하고 성능을 최적화합니다.
+        프로덕션 환경에서 DEBUG = True로 설정하면 보안 위험이 발생할 수 있습니다.
+    5.  현재 문제와의 연관성
+        현재 DEBUG = True로 설정되어 있기 때문에 404 오류 페이지에 상세한 디버그 정보가 표시되고 있습니다. 이는 문제 해결에 도움이 되지만, 실제 문제는 템플릿 처리에 있을 가능성이 높습니다.

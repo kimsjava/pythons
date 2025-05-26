@@ -1,8 +1,6 @@
 from django.shortcuts import render  # render 함수 import 추가
-from django.views.generic import TemplateView
 from .models import Friend
-from .forms import SessionForm
-# Create your views here.
+from .forms import HelloForm
 
 # 함수형 뷰
 def index(request):
@@ -10,18 +8,17 @@ def index(request):
     params = {
         'title': 'Hello',
         'message': 'all friends',
+        'form':HelloForm(),
         'data': data,
+        
     }
-    print(f'params: {params}')
-    return render(request, 'hello/index.html', params)
-
-# HelloView 클래스 추가 (urls.py에서 사용한다면)
-class HelloView(TemplateView):
-    template_name = 'hello/index.html'
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Hello'
-        context['message'] = 'all friends'
-        context['data'] = Friend.objects.all()
-        return context
+    if request.method == 'POST':
+        num = request.POST['id']
+        item = Friend.objects.get(id=num)
+        params['data'] = [item]
+        params['form'] = HelloForm(request.POST)
+    else:
+        params['data'] = Friend.objects.all()
+        
+    return render(request, 'hello/index.html', params)
