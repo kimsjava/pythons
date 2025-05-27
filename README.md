@@ -229,7 +229,7 @@ brew install graphviz
 
 ---
 
-3.  **Django 설정 파일에서 DEBUG 모드 활성화**
+5.  **Django 설정 파일에서 DEBUG 모드 활성화**
 
     1.  설정 파일 구조
         from .base import \* 코드는 같은 디렉토리에 있는 base.py 파일의 모든 설정을 가져옵니다.
@@ -266,3 +266,43 @@ brew install graphviz
         프로덕션 환경에서 DEBUG = True로 설정하면 보안 위험이 발생할 수 있습니다.
     5.  현재 문제와의 연관성
         현재 DEBUG = True로 설정되어 있기 때문에 404 오류 페이지에 상세한 디버그 정보가 표시되고 있습니다. 이는 문제 해결에 도움이 되지만, 실제 문제는 템플릿 처리에 있을 가능성이 높습니다.
+
+6.  **가상환경 설정**
+
+- 가상환경 생성 및 활성화 (macOS/Linux)
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
+- (Windows)
+  ```cmd
+  python -m venv venv
+  venv\Scripts\activate
+  ```
+- 가상환경이 활성화된 상태에서 의존성 설치
+  ```bash
+  pip install -r requirements.txt
+  ```
+- 가상환경이 활성화되어 있으면 프롬프트에 (venv) 표시됨
+- VS Code에서는 Python 인터프리터를 venv/bin/python으로 선택
+
+7. **VS Code 인터프리터 및 플러그인 설정**
+
+- **Python 인터프리터 설정**
+
+  - VS Code 하단의 Python 버전 클릭 → `venv/bin/python` 선택
+  - 또는 명령 팔레트(Ctrl+Shift+P)에서 `Python: 인터프리터 선택` 후 가상환경 경로 선택
+
+- **PHP 인터프리터 설정**
+
+  - VS Code에서 PHP 확장(php, felixfbecker.php-intellisense 등) 설치
+  - settings.json에 아래와 같이 추가:
+    ```json
+    "php.validate.executablePath": "/usr/local/bin/php"
+    ```
+  - PHP 경로는 `which php` 명령어로 확인 가능
+
+- **Django 플러그인(확장) 설치 및 활용**
+  - VS Code 확장 탭에서 "Django" 또는 "Django Commands" 검색 후 설치
+  - 설치 후 명령 팔레트(Ctrl+Shift+P)에서 `Django: Runserver` 등 명령을 클릭으로 실행 가능
+  - Django 관련 코드 자동완성, 명령어 실행, 템플릿 지원 등 다양한 기능 제공
