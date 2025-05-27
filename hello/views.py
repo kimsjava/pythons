@@ -4,7 +4,7 @@ from .forms import HelloForm
 
 # 함수형 뷰
 def index(request):
-    data = Friend.objects.all().values()
+    data = Friend.objects.all().values('id', 'name', 'age')
     params = {
         'title': 'Hello',
         'message': 'all friends',
