@@ -306,3 +306,33 @@ brew install graphviz
   - VS Code 확장 탭에서 "Django" 또는 "Django Commands" 검색 후 설치
   - 설치 후 명령 팔레트(Ctrl+Shift+P)에서 `Django: Runserver` 등 명령을 클릭으로 실행 가능
   - Django 관련 코드 자동완성, 명령어 실행, 템플릿 지원 등 다양한 기능 제공
+
+8. **SQLite 데이터베이스 직접 확인 방법**
+
+- 터미널에서 아래 명령어로 SQLite 콘솔에 진입합니다.
+  ```bash
+  sqlite3 db.sqlite3
+  ```
+- 테이블 목록 확인:
+  ```sql
+  .tables
+  ```
+- 테이블 구조 확인:
+  ```sql
+  .schema hello_friend
+  ```
+- 데이터 조회:
+  ```sql
+  SELECT * FROM hello_friend;
+  ```
+- 종료:
+  ```sql
+  .quit
+  ```
+  또는 단축키:
+  - macOS/Linux: Ctrl + D
+  - Windows: Ctrl + Z
+
+```
+
+```
