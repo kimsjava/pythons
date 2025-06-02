@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', include('hello.urls')),
     path('edit/<int:num>', views.edit,name='edit'),
-    # 루트 URL을 /hello/로 리다이렉트
+    path('delete/<int:num>',views.delete, name='delete'),
 ]

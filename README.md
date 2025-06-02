@@ -101,14 +101,34 @@ django_app/
 
    - **session, middleware**
 
-3. ** Model,Database**
+3. **Model, Database**
 
    - **Database Configuration**
 
      - `django_app/settings/setting.py`에서 데이터베이스 설정을 수정합니다.
      - `django_app/hello/models.py`에서 모델 설정을 수정합니다.
-     - `> python manage.py makemigrations hello`에서 마이그레이션 파일 작성.
-     - `> python manage.py migrate`마이그레이션 실행. -> migrations/0001_initial.py 생성 됨
+     - `python manage.py makemigrations hello` 명령으로 마이그레이션 파일 작성.
+     - `python manage.py migrate` 명령으로 마이그레이션 실행 → migrations/0001_initial.py 생성됨
+
+   - **모델 변경 및 마이그레이션 과정**
+
+     - 모델을 변경하면(필드 추가, 삭제, 수정 등) 데이터베이스 스키마도 함께 변경해야 합니다.
+     - 마이그레이션 작업은 모델 코드의 변경사항을 데이터베이스에 실제로 적용하는 과정입니다.
+     - 마이그레이션 명령 순서:
+
+       ```bash
+       # 1. 모델 변경사항을 감지해 마이그레이션 파일 생성
+       python manage.py makemigrations
+
+       # 2. 생성된 마이그레이션을 데이터베이스에 적용
+       python manage.py migrate
+
+       # 3. 마이그레이션 상태 확인
+       python manage.py showmigrations
+       ```
+
+     - 마이그레이션 파일은 Django가 데이터베이스를 변경하는 방법을 기술하는 Python 코드 파일입니다.
+     - 이 과정을 통해 모델과 데이터베이스의 동기화가 유지됩니다.
 
    - **管理ツールを使おう**
 
@@ -360,9 +380,71 @@ brew install graphviz
   .schema hello_friend
   ```
 - 데이터 조회:
+
   ```sql
   SELECT * FROM hello_friend;
   ```
+
+- **조건부 조회 및 정렬**:
+
+  ```sql
+  -- 특정 조건으로 필터링
+  SELECT * FROM hello_friend WHERE age > 20;
+
+  -- 이름으로 오름차순 정렬
+  SELECT * FROM hello_friend ORDER BY name;
+
+  -- 나이 내림차순, 이름 오름차순 정렬
+  SELECT * FROM hello_friend ORDER BY age DESC, name ASC;
+  ```
+
+- **출력 형식 개선**:
+
+  ```sql
+  -- 컬럼 형식으로 출력 (가독성 향상)
+  .mode column
+
+  -- 컬럼 헤더 표시
+  .headers on
+
+  -- 컬럼 너비 설정
+  .width 10 20 5 10
+  ```
+
+- **Django 특수 테이블 확인**:
+
+  ```sql
+  -- 마이그레이션 히스토리 확인
+  SELECT * FROM django_migrations;
+
+  -- 관리자 사용자 정보 확인
+  SELECT * FROM auth_user;
+
+  -- 세션 정보 확인
+  SELECT * FROM django_session;
+  ```
+
+- **데이터 백업 및 내보내기**:
+
+  ```sql
+  -- SQL 문으로 백업
+  .output backup.sql
+  .dump
+  .output stdout
+
+  -- CSV 형식으로 내보내기
+  .mode csv
+  .output data.csv
+  SELECT * FROM hello_friend;
+  .output stdout
+  ```
+
+- **SQL 실행 계획 확인** (쿼리 성능 분석):
+
+  ```sql
+  EXPLAIN QUERY PLAN SELECT * FROM hello_friend WHERE name LIKE 'A%';
+  ```
+
 - 종료:
   ```sql
   .quit
@@ -370,3 +452,44 @@ brew install graphviz
   또는 단축키:
   - macOS/Linux: Ctrl + D
   - Windows: Ctrl + Z
+- **도움말 보기**:
+  ```sql
+  .help
+  ```
+
+9. **SQLite 데이터베이스 파일 관리**
+
+- **데이터베이스 파일 백업**:
+
+  ```bash
+  # 파일 단순 복사로 백업
+  cp db.sqlite3 db.sqlite3.backup
+
+  # 또는 SQLite 명령어로 백업
+  sqlite3 db.sqlite3 .dump > db_dump.sql
+  ```
+
+- **데이터베이스 복원**:
+
+  ```bash
+  # 파일 복원
+  cp db.sqlite3.backup db.sqlite3
+
+  # 또는 덤프 파일에서 복원
+  sqlite3 db.sqlite3 < db_dump.sql
+  ```
+
+- **데이터베이스 점검 및 최적화**:
+  ```bash
+  sqlite3 db.sqlite3 "VACUUM;"
+  ```
+- **VS Code에서 SQLite 파일 보기**:
+
+  - VS Code용 SQLite Viewer 확장 설치
+  - db.sqlite3 파일을 열고 우클릭하여 "Open Database" 선택
+  - 좌측 EXPLORER 탭의 "SQLITE EXPLORER" 섹션에서 테이블 확인 가능
+
+- **DB Browser for SQLite 사용하기**:
+  - GUI 도구로 SQLite 데이터베이스 관리 가능
+  - https://sqlitebrowser.org/에서 다운로드
+  - 데이터 시각화, SQL 실행, 스키마 변경 등 다양한 기능 제공

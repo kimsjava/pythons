@@ -31,8 +31,6 @@ def create(request):
     return render(request, 'hello/create.html', params)
 
 
-
-
 def edit(request, num):
     obj = Friend.objects.get(id=num)
     if request.method == 'POST':
@@ -47,3 +45,16 @@ def edit(request, num):
         'form': FriendForm(instance=obj),  # FriendForm 사용
     }
     return render(request, 'hello/edit.html', params)
+
+
+def delete(request, num):
+    friend = Friend.objects.get(id=num)  # objects로 수정 (object → objects)
+    if (request.method == 'POST'):
+        friend.delete()
+        return redirect(to='/hello')  # /hello로 수정 ('hello' → '/hello')
+    params = {
+        'title': '데이터 삭제',
+        'id': num,
+        'obj': friend,
+    }
+    return render(request, 'hello/delete.html', params)
