@@ -164,9 +164,35 @@ VS Code에서 디렉터리 구조를 **트리(계층 구조)**로 보이게 하�
         ＞　hello git:(dev) ✗ git ls-tree --name-only origin/dev
     ```
 
+**💡 git commit --amend 사용법:**
+
+- 최근 커밋 메시지 수정:
+  ```bash
+  git commit --amend
+  ```
+  (에디터가 열리면 메시지 수정 후 저장/닫기)
+
+  **vi/vim 에디터 기본 조작법:**
+  - 입력(수정) 모드로 전환: `i`
+  - 입력 모드 종료(명령 모드로): `Esc`
+  - 저장하고 종료: `:wq` + Enter
+  - 저장하지 않고 종료: `:q!` + Enter
+
+- 메시지를 한 줄로 바로 수정:
+  ```bash
+  git commit --amend -m "새 메시지"
+  ```
+
+- 이미 푸시한 커밋을 수정했다면 강제 푸시 필요:
+  ```bash
+  git push --force
+  ```
+
+⚠️ 주의: --amend는 마지막 커밋을 덮어쓰므로, 이미 푸시한 커밋을 수정할 경우 팀원과 협의 후 사용하세요.
+
 **💡 PlantUML Tip:**
 
-1. **온라인 뷰어로 보기**
+1. **온라인 뷰어로 보기
 
 ````
 
@@ -302,6 +328,18 @@ brew install graphviz
     ```
   - PHP 경로는 `which php` 명령어로 확인 가능
 
+  - **PHP AI 자동 기능 끄기**
+    - VS Code 설정(⌘ + , 또는 Ctrl + ,)을 열고 다음 설정 추가:
+    ```json
+    "php.suggest.basic": false,
+    "editor.suggestSelection": "first",
+    "editor.inlineSuggest.enabled": false,
+    "github.copilot.enable": {
+        "php": false
+    }
+    ```
+    - 이 설정은 PHP 기본 제안, 인라인 제안, GitHub Copilot의 PHP 제안을 비활성화합니다
+
 - **Django 플러그인(확장) 설치 및 활용**
   - VS Code 확장 탭에서 "Django" 또는 "Django Commands" 검색 후 설치
   - 설치 후 명령 팔레트(Ctrl+Shift+P)에서 `Django: Runserver` 등 명령을 클릭으로 실행 가능
@@ -332,7 +370,3 @@ brew install graphviz
   또는 단축키:
   - macOS/Linux: Ctrl + D
   - Windows: Ctrl + Z
-
-```
-
-```
