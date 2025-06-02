@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect  # render, redirect 함수 import 추가
 from .models import Friend
 from .forms import HelloForm, FriendForm
-
+from django.views.generic import DetailView
+from django.views.generic import ListView
 
 # 함수형 뷰
 def index(request):
@@ -58,3 +59,16 @@ def delete(request, num):
         'obj': friend,
     }
     return render(request, 'hello/delete.html', params)
+
+
+class FriendList(ListView):
+    """친구 목록을 보여주는 클래스 기반 뷰"""
+    model = Friend
+    template_name = 'hello/friend_list.html'
+    context_object_name = 'friends'  # 템플릿에서 {{friends}} 형태로 접근 가능
+
+class FriendDetail(DetailView):
+    """친구 상세 정보를 보여주는 클래스 기반 뷰"""
+    model = Friend
+    template_name = 'hello/friend_detail.html'
+    context_object_name = 'friend'  # 템플릿에서 {{friend}} 형태로 접근 가능
