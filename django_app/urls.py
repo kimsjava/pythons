@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
-#mport hello.views as hello
+from hello import views
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/hello/', permanent=False)),
     path('admin/', admin.site.urls),
     path('hello/', include('hello.urls')),
+    path('edit/<int:num>', views.edit,name='edit'),
     # 루트 URL을 /hello/로 리다이렉트
-    path('', RedirectView.as_view(url='/hello/', permanent=False)),
 ]
