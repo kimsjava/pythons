@@ -1,165 +1,103 @@
 # Django Application
 
-This is a simple Django application with basic CRUD functionality.
+이 애플리케이션은 친구 정보를 관리하는 간단한 Django CRUD 기능을 제공합니다.
 
-## Project Structure
+## 프로젝트 구조
 
 ```
-myproject/                  # 프로젝트 루트 디렉터리
+django_app/                 # 프로젝트 루트 디렉터리
 │
-├── myproject/              # 프로젝트 설정 패키지
+├── django_app/             # 프로젝트 설정 패키지
 │   ├── __init__.py         # Python 패키지임을 나타내는 파일
 │   ├── settings.py         # 프로젝트 설정 파일
-│   ├── urls.py             # 프로젝트 URL 설정
+│   ├── urls.py             # 프로젝트 URL 설정 (hello 앱으로 라우팅)
 │   ├── asgi.py             # ASGI 호환 웹 서버 진입점
 │   └── wsgi.py             # WSGI 호환 웹 서버 진입점
 │
-├── myapp/                  # 애플리케이션 패키지
+├── hello/                  # hello 애플리케이션 패키지
 │   ├── __init__.py         # Python 패키지임을 나타내는 파일
 │   ├── admin.py            # 관리자 인터페이스 설정
 │   ├── apps.py             # 앱 설정
+│   ├── forms.py            # 폼 클래스 정의 (HelloForm, FriendForm)
 │   ├── migrations/         # 데이터베이스 마이그레이션 파일 디렉터리
-│   │   └── __init__.py
-│   ├── models.py           # 데이터베이스 모델 정의
+│   │   ├── __init__.py
+│   │   └── 0001_initial.py # 초기 마이그레이션 파일
+│   ├── models.py           # Friend 모델 정의
 │   ├── tests.py            # 테스트 코드
-│   ├── urls.py             # 앱 URL 설정
-│   ├── views.py            # 뷰 함수 정의
+│   ├── urls.py             # 앱 URL 설정 (index, create, edit, delete 등)
+│   ├── views.py            # 뷰 함수 및 클래스 정의
 │   └── templates/          # 템플릿 디렉터리
-│       └── myapp/          # 앱 이름으로 된 하위 디렉터리
-│           └── item_list.html  # 템플릿 파일
+│       └── hello/          # 앱 이름으로 된 하위 디렉터리
+│           ├── index.html      # 메인 목록 화면
+│           ├── create.html     # 데이터 생성 폼
+│           ├── edit.html       # 데이터 수정 폼
+│           ├── delete.html     # 데이터 삭제 확인
+│           ├── friend_list.html    # 클래스 기반 뷰용 목록 화면
+│           └── friend_detail.html  # 클래스 기반 뷰용 상세 화면
 │
-├── venv/                   # 가상 환경 (프로젝트 루트 외부에 있을 수도 있음)
+├── static/                 # 정적 파일 디렉터리
+│   └── hello/              # 앱 이름으로 된 하위 디렉터리
+│       └── css/            # CSS 파일 디렉터리
+│           └── style.css   # 스타일시트 파일
+│
+├── .vscode/                # VS Code 설정 디렉터리
+│   └── settings.json       # VS Code 설정 파일
+│
+├── venv/                   # 가상 환경
 │
 ├── manage.py               # Django 프로젝트 관리 스크립트
 │
-└── db.sqlite3              # SQLite 데이터베이스 파일 (migrate 명령 실행 후 생성됨)
+├── db.sqlite3              # SQLite 데이터베이스 파일
+│
+├── README.md               # 프로젝트 설명 문서
+└── README-DIR.md           # 프로젝트 구조 설명 문서
 ```
 
-## Setup Instructions
+## 설치 및 실행 방법
 
-1. Clone the repository
-2. Create a virtual environment:
+1. 저장소 클론:
+
    ```
-   python -m venv venv
+   git clone <repository-url>
+   cd django_app
    ```
-3. Activate the virtual environment:
-   - Windows: `venv\Scripts\activate`
-   - macOS/Linux: `source venv/bin/activate`
-4. Install dependencies:
+
+2. 가상 환경 생성 및 활성화:
+
    ```
+   python3 -m venv venv
+   source venv/bin/activate  # macOS/Linux
+   # 또는
+   venv\Scripts\activate  # Windows
+   ```
+
+3. 의존성 설치:
+
+   ```
+   pip install -r requirements.txt
+   # 또는
    pip install django
    ```
-5. Apply migrations:
+
+4. 데이터베이스 마이그레이션:
+
    ```
    python manage.py migrate
    ```
-6. Create a superuser:
-   ```
-   python manage.py createsuperuser
-   ```
-7. Run the development server:
+
+5. 개발 서버 실행:
    ```
    python manage.py runserver
    ```
 
-## Accessing the Application
+## 애플리케이션 접근
 
-- Admin interface: http://127.0.0.1:8000/admin/
-- Item list: http://127.0.0.1:8000/items/
+- 메인 페이지: http://127.0.0.1:8000/ 또는 http://127.0.0.1:8000/hello/
+- 관리자 인터페이스: http://127.0.0.1:8000/admin/
 
-## Features
+## 기능
 
-- Item management (Create, Read, Update, Delete)
-- Admin interface for data management
-
-````
-
-README.md 파일을 생성하려면 다음 명령을 실행하세요:
-
-```bash
-echo '# Django Application
-
-This is a simple Django application with basic CRUD functionality.
-
-## Project Structure
-
-````
-
-myproject/ # 프로젝트 루트 디렉터리
-│
-├── myproject/ # 프로젝트 설정 패키지
-│ ├── **init**.py # Python 패키지임을 나타내는 파일
-│ ├── settings.py # 프로젝트 설정 파일
-│ ├── urls.py # 프로젝트 URL 설정
-│ ├── asgi.py # ASGI 호환 웹 서버 진입점
-│ └── wsgi.py # WSGI 호환 웹 서버 진입점
-│
-├── myapp/ # 애플리케이션 패키지
-│ ├── **init**.py # Python 패키지임을 나타내는 파일
-│ ├── admin.py # 관리자 인터페이스 설정
-│ ├── apps.py # 앱 설정
-│ ├── migrations/ # 데이터베이스 마이그레이션 파일 디렉터리
-│ │ └── **init**.py
-│ ├── models.py # 데이터베이스 모델 정의
-│ ├── tests.py # 테스트 코드
-│ ├── urls.py # 앱 URL 설정
-│ ├── views.py # 뷰 함수 정의
-│ └── templates/ # 템플릿 디렉터리
-│ └── myapp/ # 앱 이름으로 된 하위 디렉터리
-│ └── item_list.html # 템플릿 파일
-│
-├── venv/ # 가상 환경 (프로젝트 루트 외부에 있을 수도 있음)
-│
-├── manage.py # Django 프로젝트 관리 스크립트
-│
-└── db.sqlite3 # SQLite 데이터베이스 파일 (migrate 명령 실행 후 생성됨)
-
-```
-
-## Setup Instructions
-
-1. Clone the repository
-2. Create a virtual environment:
-```
-
-python -m venv venv
-
-```
-3. Activate the virtual environment:
-- Windows: `venv\Scripts\activate`
-- macOS/Linux: `source venv/bin/activate`
-4. Install dependencies:
-```
-
-pip install django
-
-```
-5. Apply migrations:
-```
-
-python manage.py migrate
-
-```
-6. Create a superuser:
-```
-
-python manage.py createsuperuser
-
-```
-7. Run the development server:
-```
-
-python manage.py runserver
-
-```
-
-## Accessing the Application
-
-- Admin interface: http://127.0.0.1:8000/admin/
-- Item list: http://127.0.0.1:8000/items/
-
-## Features
-
-- Item management (Create, Read, Update, Delete)
-- Admin interface for data management' > README.md
-```
+- 친구 정보 관리 (생성, 조회, 수정, 삭제)
+- 함수 기반 뷰와 클래스 기반 뷰 예시
+- ModelForm을 사용한 폼 처리
+- SQLite 데이터베이스 통합
